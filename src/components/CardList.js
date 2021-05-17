@@ -1,10 +1,19 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = () => {
+const CardList = ({ graphList }) => {
     return (
         <div>
-            <Card />
+            {graphList.map((graph, index) => {
+                return (
+                <Card 
+                key={index}
+                id={graph.id}
+                name={graph.name}
+                data={graph.data}
+                />);
+            })
+            }
         </div>
     );
 }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@antv/g6": "^4.2.7",
+    "@antv/graphin": "^2.0.7",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
