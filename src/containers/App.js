@@ -1,11 +1,11 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import CardList from '../components/CardList';
 import Filter from '../components/Filter';
 
 const initialState = {
-  input:'',
-  graphs: []
+  searchfield:'',
+  graphs: [],
 }
 
 class App extends Component {
@@ -22,7 +22,6 @@ class App extends Component {
 
   loadGraphs = (data) => {
     this.setState({graphs: data});
-    // console.log(this.state);
   }
 
   // loadGraph = () => {
@@ -35,41 +34,47 @@ class App extends Component {
   //   .catch(err => console.log(err))
   // }
 
-  // onSearchChange = (event) => {
-  //   setSearchfield(event.target.value)}
+  onSearchChange = (event) => {
+    this.setState({searchfield: event.target.value})
+  }
   
-  // filteredGraphs = this.state.graphs.filter(graph => {
-  //   return graph.name.toLowerCase().includes(searchfield.toLowerCase());
-  //   })
+  onButtonSubmit = () => {
+    this.onFilteredGraph();
+  }
+
+  onFilteredGraph = () => {
+    const { graphs, searchfield } = this.state;
+    //TO DO: Fix after filtering could not back to origin graphList.
+    if (searchfield.length === 0) {
+      return this.setState({graphs: graphs});
+    } else {
+    let matchedGraph = [];
+    graphs.forEach((eachGraph) => {
+      let eachNode= eachGraph.data.nodes;
+      eachNode.filter( node => {
+        if(node.label  === searchfield){
+          matchedGraph.push(eachGraph);
+        }
+        return this.setState({graphs: matchedGraph});
+      });
+    });
+   }
+  }
 
   render() {
-    const { input, graphs } = this.state;
     return(
     <div className='tc'>
       <h1>Maltego</h1>
       <h2>Coding Challenge</h2>
-      <Filter />
+      <Filter 
+        searchChange={this.onSearchChange} 
+        onButtonSubmit={this.onButtonSubmit} />
       <CardList graphList={this.state.graphs} />
     </div>
     );
   }
 }
 
-  // const onSearchChange = (event) => {
-  //   setSearchfield(event.target.value)}
-  
-  // const filteredGraphs = graphs.filter(graph => {
-  //   return graph.name.toLowerCase().includes(searchfield.toLowerCase());
-  //   })
-
-  // return (
-  //   <div className='tc'>
-  //     <h1>Maltego</h1>
-  //     <h2>Coding Challenge</h2>
-  //     <Filter searchChange={onSearchChange} />
-  //     <CardList graphs={filteredGraphs} />
-  //   </div>
-  // );
 
 
 

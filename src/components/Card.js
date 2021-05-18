@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
+// import ReactDOM from 'react-dom';
 import Graphin from '@antv/graphin';
 
 const Card = ({ id, name, data }) => {
