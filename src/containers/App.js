@@ -61,6 +61,11 @@ class App extends Component {
    }
   }
 
+  handleRemove = (id) => {
+    this.setState({graphs: this.state.graphs.filter((eachGraph) =>
+       eachGraph.id !== id)});
+  }
+
   render() {
     return(
     <div className='tc'>
@@ -69,7 +74,9 @@ class App extends Component {
       <Filter 
         searchChange={this.onSearchChange} 
         onButtonSubmit={this.onButtonSubmit} />
-      <CardList graphList={this.state.graphs} />
+      <CardList 
+        graphList={this.state.graphs} 
+        onRemove={this.handleRemove} />
     </div>
     );
   }

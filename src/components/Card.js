@@ -2,13 +2,18 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import Graphin from '@antv/graphin';
 
-const Card = ({ id, name, data }) => {
+const Card = ({ id, name, data, onRemove }) => {
     return (
-        <div className='bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5'>
+        <div className='bg-light-green dib br3 pa3 ma2 bw2 shadow-5'>
             <div>
               <Graphin data={data} />
               <h2>{id}</h2>
               <h2>{name}</h2>
+              <button 
+                className='f6 link dim br2 ba bw1 ph3 pv2 mb2 dib mid-gray' 
+                onClick={() => onRemove(id)}>
+                Delete
+              </button>
             </div>
         </div>
     );
