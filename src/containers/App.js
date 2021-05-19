@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import CardList from '../components/CardList';
 import Filter from '../components/Filter';
+import CreateNewGraph from '../components/CreateNewGraph';
 
 const initialState = {
   searchfield:'',
@@ -61,10 +62,52 @@ class App extends Component {
    }
   }
 
-  handleRemove = (id) => {
-    this.setState({graphs: this.state.graphs.filter((eachGraph) =>
-       eachGraph.id !== id)});
+  // handleRemove = (id) => {
+  //   this.setState({graphs: this.state.graphs.filter((eachGraph) =>
+  //      eachGraph.id !== id)});
+  // }
+
+  handleClick = (graphId) => {
+    fetch(`http://localhost:3001/${graphId}`, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: graphId
+      })
+    })
+    .then(response => response.json())
+    .then(response => this.setState({graphs: response}))
+    .catch(err => console.log(err))
   }
+
+  // createChangeHandler = (event) => {
+  //   let newGraphName=event.target.value;
+  //   return newGraphName;}
+    // if (!newGraphName) {
+    //   console.log(newGraphName);
+    //   return newGraphName;
+    // }
+    // alert("Field cannot be empty!");
+  // }
+
+  // onSubmitCreate = () => {
+  //   let newGraphName = this.createChangeHandler();
+  //   if (newGraphName.length === 0) {
+  //     alert("Field cannot be empty!");
+  //   }
+    // console.log(newGraphName);}
+    // fetch('http://localhost:3001/', {
+    //   method: 'post',
+    //   headers: {'Content-Type': 'application/json'},
+    //   body: JSON.stringify({
+    //     name: newGraphName,
+    //     data:{}
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then(response => this.setState({graphs: response}))
+    //   .catch(err => console.log(err))
+  // }
 
   render() {
     return(
@@ -74,9 +117,12 @@ class App extends Component {
       <Filter 
         searchChange={this.onSearchChange} 
         onButtonSubmit={this.onButtonSubmit} />
+      <CreateNewGraph 
+        createChangeHandler={this.createChangeHandler}
+        onSubmitCreate={this.onSubmitCreate} />
       <CardList 
         graphList={this.state.graphs} 
-        onRemove={this.handleRemove} />
+        onRemove={this.handleClick} />
     </div>
     );
   }
