@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = ({ graphList, onRemove }) => {
+const CardList = ({ graphList, onRemove, onClick }) => {
     return (
         <div>
             {graphList.map((graph, index) => {
@@ -12,6 +12,7 @@ const CardList = ({ graphList, onRemove }) => {
                 name={graph.name}
                 data={graph.data}
                 onRemove={onRemove}
+                // onClick={onClick}
                 />);
             })
             }

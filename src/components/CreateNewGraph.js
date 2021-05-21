@@ -26,6 +26,7 @@ class CreateNewGraph extends React.Component {
                 })
             })
                 .then(response => response.json())
+                // .then(response => this.props.getData())
                 .then(console.log)
         }
     }
@@ -47,23 +48,5 @@ class CreateNewGraph extends React.Component {
     }
 
 }
-
-
-// const CreateNewGraph = ({ createChangeHandler, onSubmitCreate }) => {
-//     return (
-//         <form>
-//             <input
-//             type='text'
-//             placeholder='Enter the grapg name'
-//             onChange={createChangeHandler}
-//             />
-//             <button 
-//             className='f6 link dim br2 ba bw1 ph3 pv2 mb2 dib mid-gray' 
-//             onClick={() => onSubmitCreate()}
-//             >
-//             Create Graph</button>
-//         </form>
-//     );
-// }
 
 export default CreateNewGraph;

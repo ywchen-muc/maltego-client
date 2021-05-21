@@ -15,25 +15,15 @@ class App extends Component {
     this.state = initialState;
   }
 
-  componentDidMount() {
+  getData() {
     fetch('http://localhost:3001')
       .then(response => response.json())
-      .then(this.loadGraphs)
+      .then(response => this.setState({graphs: response}))
   }
 
-  loadGraphs = (data) => {
-    this.setState({graphs: data});
+  componentDidMount() {
+    this.getData();
   }
-
-  // loadGraph = () => {
-  //   fetch('http://localhost:3001/', {
-  //     method: 'get',
-  //     headers: {'Content-Type': 'application/json'}
-  //   })
-  //   .then(response => response.json())
-  //   .then(console.log)
-  //   .catch(err => console.log(err))
-  // }
 
   onSearchChange = (event) => {
     this.setState({searchfield: event.target.value})
@@ -43,15 +33,17 @@ class App extends Component {
     this.onFilteredGraph();
   }
 
+  //TO DO: Fix after filtering could not back to origin graphList.
+  //TO DO: Fix error, the app is crashed by filtering graphs with empty data 
   onFilteredGraph = () => {
     const { graphs, searchfield } = this.state;
-    //TO DO: Fix after filtering could not back to origin graphList.
     if (searchfield.length === 0) {
-      return this.setState({graphs: graphs});
+      return graphs;
     } else {
     let matchedGraph = [];
     graphs.forEach((eachGraph) => {
       let eachNode= eachGraph.data.nodes;
+      console.log(eachNode);
       eachNode.filter( node => {
         if(node.label  === searchfield){
           matchedGraph.push(eachGraph);
@@ -62,11 +54,6 @@ class App extends Component {
    }
   }
 
-  // handleRemove = (id) => {
-  //   this.setState({graphs: this.state.graphs.filter((eachGraph) =>
-  //      eachGraph.id !== id)});
-  // }
-
   handleClick = (graphId) => {
     fetch(`http://localhost:3001/${graphId}`, {
       method: 'DELETE',
@@ -76,37 +63,18 @@ class App extends Component {
       })
     })
     .then(response => response.json())
-    .then(response => this.setState({graphs: response}))
+    .then(response => this.getData())
     .catch(err => console.log(err))
   }
 
-  // createChangeHandler = (event) => {
-  //   let newGraphName=event.target.value;
-  //   return newGraphName;}
-    // if (!newGraphName) {
-    //   console.log(newGraphName);
-    //   return newGraphName;
-    // }
-    // alert("Field cannot be empty!");
-  // }
-
-  // onSubmitCreate = () => {
-  //   let newGraphName = this.createChangeHandler();
-  //   if (newGraphName.length === 0) {
-  //     alert("Field cannot be empty!");
-  //   }
-    // console.log(newGraphName);}
-    // fetch('http://localhost:3001/', {
-    //   method: 'post',
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify({
-    //     name: newGraphName,
-    //     data:{}
-    //   })
-    // })
-    //   .then(response => response.json())
-    //   .then(response => this.setState({graphs: response}))
-    //   .catch(err => console.log(err))
+  // onGraphClick = (graphId) => {
+  //   fetch(`http://localhost:3001/${graphId}`, {
+  //     method: 'get'
+  //   })
+  //   .then(response => response.json())
+  //   .then(response => {
+  //     window.open(`http://localhost:3000/${graphId}`, "_blank")})
+  //   .catch(err => console.log(err))
   // }
 
   render() {
@@ -121,7 +89,8 @@ class App extends Component {
         createChangeHandler={this.createChangeHandler}
         onSubmitCreate={this.onSubmitCreate} />
       <CardList 
-        graphList={this.state.graphs} 
+        graphList={this.state.graphs}
+        // onClick={this.onGraphClick} 
         onRemove={this.handleClick} />
     </div>
     );
