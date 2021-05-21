@@ -5,7 +5,10 @@ class CreateNewGraph extends React.Component {
         super(props);
         this.state = {
             name: '',
-            data: {}
+            data: {
+                "nodes":[],
+                "edges":[]
+            }
         }
     }
     
