@@ -1,9 +1,11 @@
 import React from 'react';
-// import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-// import ReactDOM from 'react-dom';
 import Graphin, { Behaviors } from '@antv/graphin';
+import { Link } from "react-router-dom";
 
-const Card = ({ id, name, data, onRemove, onClick }) => {
+
+
+const Card = ({ id, name, data, onRemove }) => {
+
     const { ZoomCanvas } = Behaviors;
     return (
         <div className="bg-light-green w-30 dib br3 pa3 ma2 bw2 shadow-5">
@@ -22,10 +24,15 @@ const Card = ({ id, name, data, onRemove, onClick }) => {
                 Delete
             </button>
             <button 
-                className='f6 link dim br2 ba bw1 ph3 pv2 mb2 dib mid-gray' 
-                // onClick={() => onClick(id)}
+                className='f6 link dim br2 ba bw1 ph3 pv2 mb2 dib mid-gray'
                 >
-                Graph Page
+                <Link
+                to={{
+                    pathname: "/graph",
+                    state: data
+                }}>
+                View graph
+                </Link>
             </button>
         </div>
     );

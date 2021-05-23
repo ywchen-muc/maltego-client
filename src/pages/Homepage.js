@@ -28,7 +28,7 @@ class Homepage extends Component {
     onSearchChange = (event) => {
       this.setState({searchfield: event.target.value})
     }
-    
+
     onButtonSubmit = () => {
       this.onFilteredGraph();
     }
@@ -47,21 +47,10 @@ class Homepage extends Component {
           .then(response => response.json())
           .then(response => this.setState({graphs: response}))
           .catch(err => console.log(err))
-    //   let matchedGraph = [];
-    //   graphs.forEach((eachGraph) => {
-    //     let eachNode= eachGraph.data.nodes;
-    //     console.log(eachNode);
-    //     eachNode.filter( node => {
-    //       if(node.label  === searchfield){
-    //         matchedGraph.push(eachGraph);
-    //       }
-    //       return this.setState({graphs: matchedGraph});
-    //     });
-    //   });
      }
     }
   
-    handleClick = (graphId) => {
+    onDeleteButtonClick = (graphId) => {
       fetch(`http://localhost:3001/${graphId}`, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'},
@@ -72,6 +61,16 @@ class Homepage extends Component {
       .then(response => response.json())
       .then(response => this.getData())
       .catch(err => console.log(err))
+    }
+
+    onGraphPageButtonClick = (graphId) => {
+        fetch(`http://localhost:3001/${graphId}`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
+            .then(response => response.json())
+            .then(response => this.getData())
+            .catch(err => console.log(err))
     }
   
     render() {
@@ -87,8 +86,8 @@ class Homepage extends Component {
             onSubmitCreate={this.onSubmitCreate} />
           <CardList 
             graphList={this.state.graphs}
-            // onClick={this.onGraphClick} 
-            onRemove={this.handleClick} />
+            // onClick={this.onGraphPageButtonClick}
+            onRemove={this.onDeleteButtonClick} />
         </div>
         );
       }
