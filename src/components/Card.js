@@ -8,9 +8,9 @@ const Card = ({ id, name, data, onRemove }) => {
 
     const { ZoomCanvas } = Behaviors;
     return (
-        <div className="bg-light-green w-30 dib br3 pa3 ma2 bw2 shadow-5">
+        <div style={{backgroundColor: '#2f384a'}} className="w-30 dib br3 pa3 ma2 bw2 shadow-5">
             <div>
-                <h2>{name}</h2>
+                <h2 className="white b">{name}</h2>
             </div>
                 <Graphin 
                     data={data} 

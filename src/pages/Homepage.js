@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CardList from '../components/CardList';
 import Filter from '../components/Filter';
 import CreateNewGraph from '../components/CreateNewGraph';
+import Nav from '../components/Nav';
 
 const initialState = {
     searchfield:'',
@@ -33,10 +34,8 @@ class Homepage extends Component {
       this.onFilteredGraph();
     }
   
-    //TO DO: Fix after filtering could not back to origin graphList.
-    //TO DO: Fix error, the app is crashed by filtering graphs with empty data 
     onFilteredGraph = () => {
-      const { graphs, searchfield } = this.state;
+      const { searchfield } = this.state;
       if (searchfield.length === 0) {
         return this.getData();
       } else {
@@ -76,8 +75,7 @@ class Homepage extends Component {
     render() {
         return(
         <div className='tc'>
-          <h1>Maltego</h1>
-          <h2>Coding Challenge</h2>
+          <Nav/>
           <Filter 
             searchChange={this.onSearchChange} 
             onButtonSubmit={this.onButtonSubmit} />
