@@ -9,9 +9,10 @@ const Graphpage =  (props) => {
         return(
             <div className="tc">
                 <Nav/>
-                <div style={{backgroundColor: '#2f384a'}} className="bg-light-green w-30 dib br3 pa3 ma2 bw2 shadow-5">
+                <div style={{backgroundColor: '#2f384a'}} className="bg-light-green w-80 dib br3 pa3 ma2 bw2 shadow-5">
                     <div className="white b">
-                        <h2>This is a force directed graph</h2>
+                        <h2>{name}</h2>
+                        <p>You could zoom-in/out, drage canvas and nodes and click nodes to see its relationship</p>
                     </div>
 
                     <Graphin
