@@ -2,11 +2,10 @@ import React from 'react';
 import Graphin, { Behaviors } from '@antv/graphin';
 import Nav from '../components/Nav';
 
-const Graphpage =  (props) => {
-        const data  = (props.location && props.location.state) || {};
-        // console.log(data);
-        const { ZoomCanvas } = Behaviors;
 
+const Graphpage =  (props) => {
+        const {id, name, data}  = (props.location && props.location.state) || {};
+        const { DragCanvas, ZoomCanvas, DragNode, ActivateRelations } = Behaviors;
         return(
             <div className="tc">
                 <Nav/>
@@ -14,11 +13,17 @@ const Graphpage =  (props) => {
                     <div className="white b">
                         <h2>This is a force directed graph</h2>
                     </div>
+
                     <Graphin
                         data={data}
-                        layout={{ type: 'concentric' }}
-                        width="300px" >
-                        <ZoomCanvas disabled />
+                        layout={{ type: 'graphin-force' }}
+                        width="800px"
+                        height="600px"
+                    >
+                        <DragCanvas enableOptimize/>
+                        <ZoomCanvas enableOptimize />
+                        <DragNode />
+                        <ActivateRelations trigger="click" />
                     </Graphin>
                 </div>
             </div>

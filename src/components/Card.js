@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 
 const Card = ({ id, name, data, onRemove }) => {
-
     const { ZoomCanvas } = Behaviors;
     return (
         <div style={{backgroundColor: '#2f384a'}} className="w-30 dib br3 pa3 ma2 bw2 shadow-5">
@@ -28,8 +27,12 @@ const Card = ({ id, name, data, onRemove }) => {
                 >
                 <Link
                 to={{
-                    pathname: "/graph",
-                    state: data
+                    pathname: `/${id}`,
+                    state: {
+                        id : id,
+                        name: name,
+                        data: data
+                    }
                 }}>
                 View graph
                 </Link>
