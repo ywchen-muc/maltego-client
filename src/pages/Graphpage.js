@@ -12,7 +12,7 @@ const Graphpage =  (props) => {
                 <div style={{backgroundColor: '#2f384a'}} className="w-60 dib br3 pa3 ma2 bw2 shadow-5">
                     <div className="white b">
                         <h2>{name}</h2>
-                        <p>You could zoom-in/out, drage canvas and nodes and click nodes to see its relationship</p>
+                        <p>You could zoom-in/out, drag canvas and nodes and click nodes to see its relationship</p>
                     </div>
                     <Graphin
                         data={data}
