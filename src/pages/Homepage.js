@@ -84,7 +84,6 @@ class Homepage extends Component {
             onSubmitCreate={this.onSubmitCreate} />
           <CardList 
             graphList={this.state.graphs}
-            // onClick={this.onGraphPageButtonClick}
             onRemove={this.onDeleteButtonClick} />
         </div>
         );

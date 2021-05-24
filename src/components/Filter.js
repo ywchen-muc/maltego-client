@@ -3,24 +3,27 @@ import React from 'react';
 const Filter = ({ searchfield, searchChange, onButtonSubmit }) => {
         
     return (
-        <div className="pa4-l">
-           
-            <div style={{backgroundColor: '#f2b907'}} className="mw7 center pa4 br2-ns ba b--black-10">
-                <fieldset className="cf bn ma0 pa0">
-                    <legend className="pa0 f5 f4-ns mb3 black-80">Enter a node label to filter the match graphs</legend>
-                    <div className="cf">
+        <div>           
+            <div className="w-100 pa3 mr2">
+                <div style={{display: "flex", flexWrap: "wrap"}}>
+                    <div className="fl w-80 pa2">
                         <input 
-                        className= 'f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns'
-                        type='search' 
-                        placeholder='Search graphs by label'
-                        onChange={searchChange}
+                            style={{height: "56px", margin: "0"}}
+                            className= 'fr f5 input-reset br2 ba b--moon-gray w-80 mb2'
+                            type='search' 
+                            placeholder='Enter a node label to filter the match graphs'
+                            onChange={searchChange}
                         />
+                    </div>  
+                    <div className="fl w-20 pa2">
                         <button 
-                        className='f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-100 w-25-m w-20-l br2-ns br--right-ns' 
-                        onClick={onButtonSubmit}>
-                        Filter</button>
+                            style={{backgroundColor: '#f2b907', border: "3px solid #f2b907", color: "#1d242a", height: "56px", margin: "0" }}
+                            className='fl f4 link dim br2 ph4 pv2 mb2 dib' 
+                            onClick={onButtonSubmit}>
+                            FILTER
+                        </button>
                     </div>
-                </fieldset>
+                </div>
             </div>
         </div>
     );

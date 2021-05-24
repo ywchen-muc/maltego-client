@@ -11,32 +11,36 @@ const Card = ({ id, name, data, onRemove }) => {
             <div>
                 <h2 className="white b">{name}</h2>
             </div>
-                <Graphin 
-                    data={data} 
-                    layout={{ type: 'concentric' }} 
-                    width="300px" >
+            <Graphin 
+                data={data} 
+                layout={{ type: 'concentric' }} 
+                width="300px" >
                 <ZoomCanvas disabled />
-                </Graphin>
-            <button 
-                className='f6 link dim br2 ba bw1 ph3 pv2 mb2 dib mid-gray' 
-                onClick={() => onRemove(id)}>
-                Delete
-            </button>
-            <button 
-                className='f6 link dim br2 ba bw1 ph3 pv2 mb2 dib mid-gray'
-                >
-                <Link
-                to={{
-                    pathname: `/${id}`,
-                    state: {
-                        id : id,
-                        name: name,
-                        data: data
-                    }
-                }}>
-                View graph
-                </Link>
-            </button>
+            </Graphin>
+            <div className="">
+                <button 
+                    style={{backgroundColor: '#f2b907', color: "#1d242a"}}
+                    className='f6 link dim br2 ba bw1 ph3 pv2 ma3 dib' 
+                    onClick={() => onRemove(id)}>
+                    Delete
+                </button>
+                <button 
+                    style={{backgroundColor: '#f2b907'}}
+                    className='f6 link dim br2 ba bw1 ph3 pv2 ma3 dib'>
+                    <Link
+                        style={{ textDecoration: 'none', color: "#1d242a"}}
+                        to={{
+                            pathname: `/${id}`,
+                            state: {
+                                id : id,
+                                name: name,
+                                data: data
+                            }
+                        }}>
+                        View graph
+                    </Link>
+                </button>
+            </div>
         </div>
     );
 }
